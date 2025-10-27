@@ -1,45 +1,49 @@
-Algorithme CompterPhrase
-Variables :
-    car : caractère
-    longueur, mots, voyelles : entier
-    precedent_espace : booléen
 
-Début
-    longueur ← 0
-    mots ← 0
-    voyelles ← 0
-    precedent_espace ← VRAI
+            ALGORITHM compteur_phrase
+CONST voyelles:="aeiouAEIOU";
+VAR
+     // declaration des variables
+     phrase:STRING;
+     cpt_car:INTEGER;
+     cpt_mot:INTEGER; 
+     cpt_voy:INTEGER;
+     car_courant:CHAR;
 
-    Ecrire("Saisir une phrase terminée par un point :")
+BEGIN
+// Initialisation des variables
+ cpt_car:=0;
+ cpt_mot:=0;
+ cpt_voy:=0;
+//input
+  Write("Donnez moi la phrase à traiter qui se termine avec un point!")
+  Read(phrase)
+//////////////////////////////////////////////////
+car_courant := phrase[0]
+// Traitement
+ WHILE (car_courant <> '.') DO
+//  rajouter 1 au nombre de caractère
+cpt_car := cpt_car +1;
+//les mots
+IF (car_courant = ' ') THEN
+    //j'ai trouvé un mot ' ' séparateur
+    cpt_mot := cpt_mot + 1;
+END_IF
+//les voyelles
+IF(Pos(car_courant, voyelles) <> -1) THEN
+      cpt_voy:=cpt_voy+1;
+END_IF
+//changement pour la condition de la boucle
+car_courant := phrase[cpt_car]     
+ END_WHILE
 
-    Lire(car)
+// j'ai trouvé le point '.' fin de phrase
+// les cas d'exception
+  cpt_mot := cpt_mot+1;  // le cas du premier mot
+  cpt_car := cpt_car+1 // le point '.'
 
-    Tant que car <> '.'
-        longueur ← longueur + 1
+//OUTPUT
+ Write(' le nombre de carcatères dans cette phrase est:', cpt_car) 
+ Write(' le nombre de mots dans cette phrase est:', cpt_mot) 
+ Write(' le nombre de voyelles dans cette phrase est:', cpt_voy) 
+END
 
-        // Compter les voyelles
-        Si car = 'a' ou car = 'e' ou car = 'i' ou car = 'o' ou car = 'u' ou car = 'y' ou
-           car = 'A' ou car = 'E' ou car = 'I' ou car = 'O' ou car = 'U' ou car = 'Y' Alors
-            voyelles ← voyelles + 1
-        FinSi
-
-        // Compter les mots (mot = espace suivi d’une lettre)
-        Si car = ' ' Alors
-            precedent_espace ← VRAI
-        Sinon
-            Si precedent_espace = VRAI Alors
-                mots ← mots + 1
-                precedent_espace ← FAUX
-            FinSi
-        FinSi
-
-        Lire(car)
-    FinTantQue
-
-    // On ajoute le point à la longueur
-    longueur ← longueur + 1
-
-    Ecrire("Longueur de la phrase : ", longueur)
-    Ecrire("Nombre de mots : ", mots)
-    Ecrire("Nombre de voyelles : ", voyelles)
-Fin
