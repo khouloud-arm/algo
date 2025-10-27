@@ -1,5 +1,4 @@
-
-            ALGORITHM compteur_phrase
+ALGORITHM compteur_phrase
 CONST voyelles:="aeiouAEIOU";
 VAR
      // declaration des variables
@@ -46,4 +45,5 @@ car_courant := phrase[cpt_car]
  Write(' le nombre de mots dans cette phrase est:', cpt_mot) 
  Write(' le nombre de voyelles dans cette phrase est:', cpt_voy) 
 END
+
 
