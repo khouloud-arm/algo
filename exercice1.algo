@@ -1,0 +1,45 @@
+Algorithme CompterPhrase
+Variables :
+    car : caractère
+    longueur, mots, voyelles : entier
+    precedent_espace : booléen
+
+Début
+    longueur ← 0
+    mots ← 0
+    voyelles ← 0
+    precedent_espace ← VRAI
+
+    Ecrire("Saisir une phrase terminée par un point :")
+
+    Lire(car)
+
+    Tant que car <> '.'
+        longueur ← longueur + 1
+
+        // Compter les voyelles
+        Si car = 'a' ou car = 'e' ou car = 'i' ou car = 'o' ou car = 'u' ou car = 'y' ou
+           car = 'A' ou car = 'E' ou car = 'I' ou car = 'O' ou car = 'U' ou car = 'Y' Alors
+            voyelles ← voyelles + 1
+        FinSi
+
+        // Compter les mots (mot = espace suivi d’une lettre)
+        Si car = ' ' Alors
+            precedent_espace ← VRAI
+        Sinon
+            Si precedent_espace = VRAI Alors
+                mots ← mots + 1
+                precedent_espace ← FAUX
+            FinSi
+        FinSi
+
+        Lire(car)
+    FinTantQue
+
+    // On ajoute le point à la longueur
+    longueur ← longueur + 1
+
+    Ecrire("Longueur de la phrase : ", longueur)
+    Ecrire("Nombre de mots : ", mots)
+    Ecrire("Nombre de voyelles : ", voyelles)
+Fin
